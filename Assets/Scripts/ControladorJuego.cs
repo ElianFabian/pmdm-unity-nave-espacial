@@ -17,6 +17,7 @@ public class ControladorJuego : MonoBehaviour
     private void Awake()
     {
         escenaActual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        Musica = GameObject.Find("MUSICA").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -38,5 +39,7 @@ public class ControladorJuego : MonoBehaviour
     public void Reiniciar()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(escenaActual);
+        
+        if(Jugador.EstaMuerto) Musica.Play();
     }
 }
