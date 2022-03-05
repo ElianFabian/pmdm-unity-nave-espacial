@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4490730331589083776}
   - component: {fileID: 696504454}
   - component: {fileID: 4490730331589083779}
-  - component: {fileID: 696504453}
   - component: {fileID: 8545032353927639632}
+  - component: {fileID: 476456872}
   m_Layer: 0
   m_Name: enemigo
   m_TagString: Colisionable
@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d42cd366c4f23d4e8aad69e65fe7145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Velocidad: {x: 2, y: 3}
+  Amplitud: 3
 --- !u!212 &4490730331589083779
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -97,32 +99,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &696504453
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4490730331589083778}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.81, y: 6.11}
-    newSize: {x: 4.81, y: 6.11}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.81, y: 6.11}
-  m_EdgeRadius: 0
 --- !u!50 &8545032353927639632
 Rigidbody2D:
   serializedVersion: 4
@@ -144,3 +120,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &476456872
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4490730331589083778}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3.1, y: 6.1100016}
+  m_Direction: 0
