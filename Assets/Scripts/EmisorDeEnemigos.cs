@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class EmisorDeEnemigos : MonoBehaviour
 {
     [SerializeField] Enemigo enemigo;

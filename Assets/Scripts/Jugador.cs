@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Jugador : MonoBehaviour
 {
@@ -33,7 +34,6 @@ public class Jugador : MonoBehaviour
         {
             Disparar();
         }
-
         // Dispar en ráfaga
         if (Input.GetKey(KeyCode.Mouse0) && Time.time >= SiguienteVezParaDisparar)
         {

@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class Enemigo : MonoBehaviour
 {
     [SerializeField] float Amplitud = 3;
@@ -9,13 +11,13 @@ public class Enemigo : MonoBehaviour
     Vector2 Velocidad;
     float Desfase;
 
-    const float limitIzquierdo = -14;
+    const float limiteIzquierdo = -14;
 
     private void Start()
     {
         Desfase = Random.Range(0.0f, 10.0f);
 
-        var x = Random.Range(1.0f, 2.0f);
+        var x = Random.Range(1.0f, 3.0f);
         var y = Random.Range(1.0f, 3.0f);
 
         Velocidad = new Vector2(x, y);
@@ -24,7 +26,7 @@ public class Enemigo : MonoBehaviour
     {
         Mover();
 
-        if (transform.position.x < limitIzquierdo)
+        if (transform.position.x < limiteIzquierdo)
         {
             Destruir();
         }

@@ -232,6 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocidad: 10
-  TiempoDeVida: 1.6
+  TiempoDeVida: 2
   EscalaGravedad: 0
   IsTrigger: 1
