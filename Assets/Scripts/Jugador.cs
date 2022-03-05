@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Jugador : MonoBehaviour
 {
     [SerializeField] Bala2D bala;
+    [SerializeField] float Velocidad = 2;
 
     float SiguienteVezParaDisparar = 0;
     byte TasaDeDisparo = 10;
 
+    Rigidbody2D rigidbody;
+
     void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -47,8 +51,10 @@ public class Jugador : MonoBehaviour
         var v = Input.GetAxisRaw("Vertical");
 
         var direccion = new Vector3(h, v, 0);
+        direccion = direccion.normalized;
 
-        transform.Translate(Time.deltaTime * velocidad * direccion, Space.World);
+        rigidbody.AddForce(direccion * Velocidad);
+        //transform.Translate(Time.deltaTime * velocidad * direccion, Space.World);
     }
 
     void Disparar()

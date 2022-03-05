@@ -326,6 +326,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1736430091, guid: 7153ae87c98a2154d904d13c663734df, type: 3}
+      propertyPath: Velocidad
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871812021801443204, guid: 7153ae87c98a2154d904d13c663734df, type: 3}
+      propertyPath: m_LinearDrag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871812021801443204, guid: 7153ae87c98a2154d904d13c663734df, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4225838219713556481, guid: 7153ae87c98a2154d904d13c663734df, type: 3}
       propertyPath: m_RootOrder
       value: 2
