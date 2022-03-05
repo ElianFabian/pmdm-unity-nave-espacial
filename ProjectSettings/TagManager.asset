@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Colisionable
+  - Bala Jugador
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -11,11 +9,11 @@ public class Jugador : MonoBehaviour
     float SiguienteVezParaDisparar = 0;
     byte TasaDeDisparo = 10;
 
-    Rigidbody2D rigidbody;
+    Rigidbody2D rbody;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rbody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -25,7 +23,7 @@ public class Jugador : MonoBehaviour
         var posicion = transform.position;
         transform.position = new Vector3
         (
-            Mathf.Clamp(posicion.x, -7.8f, 4.8f),
+            Mathf.Clamp(posicion.x, -7.8f, 6.5f),
             Mathf.Clamp(posicion.y, -3.8f, 3.8f),
             transform.position.z
         );
@@ -53,8 +51,7 @@ public class Jugador : MonoBehaviour
         var direccion = new Vector3(h, v, 0);
         direccion = direccion.normalized;
 
-        rigidbody.AddForce(direccion * Velocidad);
-        //transform.Translate(Time.deltaTime * velocidad * direccion, Space.World);
+        rbody.AddForce(direccion * Velocidad);
     }
 
     void Disparar()
