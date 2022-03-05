@@ -15,7 +15,7 @@ public class Enemigo : MonoBehaviour
 
     private void Start()
     {
-        Desfase = Random.Range(0.0f, 10.0f);
+        Desfase = Random.Range(0.0f, 2 * Mathf.PI);
 
         var x = Random.Range(1.0f, 3.0f);
         var y = Random.Range(1.0f, 3.0f);

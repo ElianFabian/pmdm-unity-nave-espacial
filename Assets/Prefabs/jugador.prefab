@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bala: {fileID: 5922544505565926930, guid: c6cc0e4eb79b1c74f8b46ea9380c645b, type: 3}
   Velocidad: 5
+  TasaDeDisparo: 5
 --- !u!50 &2871812021801443204
 Rigidbody2D:
   serializedVersion: 4

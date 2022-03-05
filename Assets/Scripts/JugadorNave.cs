@@ -2,19 +2,25 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Jugador : MonoBehaviour
+public class JugadorNave : MonoBehaviour
 {
     [SerializeField] Bala2D bala;
     [SerializeField] float Velocidad = 2;
+    [SerializeField][Range(1, 60)] byte TasaDeDisparo = 5;
 
     float SiguienteVezParaDisparar = 0;
-    byte TasaDeDisparo = 10;
 
     Rigidbody2D rbody;
 
-    void Start()
+    private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
+    }
+
+    void Start()
+    {
+        rbody.gravityScale = 0;
+        rbody.drag = 2.5f;
     }
 
     void Update()
