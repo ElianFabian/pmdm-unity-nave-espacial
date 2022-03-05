@@ -8,9 +8,14 @@ public class JugadorNave : MonoBehaviour
     [SerializeField] float Velocidad = 2;
     [SerializeField][Range(1, 60)] byte TasaDeDisparo = 5;
 
+    public short Vidas = 5;
+    bool EstaMuerto = false;
     float SiguienteVezParaDisparar = 0;
 
     Rigidbody2D rbody;
+
+    const float limiteInferior = -6;
+    const string TAG_COLISIONABLE = "Colisionable";
 
     private void Awake()
     {
@@ -25,15 +30,14 @@ public class JugadorNave : MonoBehaviour
 
     void Update()
     {
+        // Cuando el jugador muera se caerá y cuando sobre pase el límite inferior se destruirá
+        if (transform.position.y < limiteInferior) Destroy(gameObject);
+
+        if (EstaMuerto) return;
+
         MoverConTecladoFlechas();
 
-        var posicion = transform.position;
-        transform.position = new Vector3
-        (
-            Mathf.Clamp(posicion.x, -7.8f, 6.5f),
-            Mathf.Clamp(posicion.y, -3.8f, 3.8f),
-            transform.position.z
-        );
+        LimitarPosicion();
 
         // Disparo normal
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -41,13 +45,36 @@ public class JugadorNave : MonoBehaviour
             Disparar();
         }
         // Dispar en ráfaga
-        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= SiguienteVezParaDisparar)
+        if (Input.GetKey(KeyCode.Mouse2) && Time.time >= SiguienteVezParaDisparar)
         {
             SiguienteVezParaDisparar = Time.time + 1/(float)TasaDeDisparo;
             Disparar();
         }
     }
 
+    private void LimitarPosicion()
+    {
+        transform.position = new Vector3
+        (
+            Mathf.Clamp(transform.position.x, -7.8f, 6.5f),
+            Mathf.Clamp(transform.position.y, -3.8f, 3.8f),
+            transform.position.z
+        );
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag(TAG_COLISIONABLE)) return;
+
+        if (!EstaMuerto) Vidas--;
+
+        if (Vidas <= 0)
+        {
+            EstaMuerto = true;
+        }
+
+        if (EstaMuerto) Morir();
+    }
 
     void MoverConTecladoFlechas(float velocidad = 5)
     {
@@ -65,5 +92,12 @@ public class JugadorNave : MonoBehaviour
         var nuevaBala = Instantiate(bala, transform.position + transform.forward, bala.transform.rotation);
 
         nuevaBala.Disparar();
+    }
+
+    void Morir()
+    {
+        rbody.gravityScale = 1;
+
+        EstaMuerto = true;
     }
 }
