@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 476456872}
   m_Layer: 0
   m_Name: enemigo
-  m_TagString: Colisionable
+  m_TagString: Enemigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

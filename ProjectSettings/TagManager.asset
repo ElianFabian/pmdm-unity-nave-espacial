@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Colisionable
   - Bala Jugador
+  - Enemigo
   layers:
   - Default
   - TransparentFX

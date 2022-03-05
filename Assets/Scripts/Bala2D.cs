@@ -17,6 +17,7 @@ public class Bala2D : MonoBehaviour
 
     AudioSource Sonido;
 
+    const string TAG_ENEMIGO = "Enemigo";
     const string TAG_COLISIONABLE = "Colisionable";
     #endregion
 
@@ -39,7 +40,7 @@ public class Bala2D : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag(TAG_COLISIONABLE)) return;
+        if (!collision.CompareTag(TAG_ENEMIGO) && !collision.CompareTag(TAG_COLISIONABLE)) return;
 
         // Cuando colisiona se encoge la bala a 0
         // para que antes de destruirla le de tiempo a reproducir su sonido

@@ -15,7 +15,7 @@ public class JugadorNave : MonoBehaviour
     Rigidbody2D rbody;
 
     const float limiteInferior = -6;
-    const string TAG_COLISIONABLE = "Colisionable";
+    const string TAG_ENEMIGO = "Enemigo";
 
     private void Awake()
     {
@@ -64,7 +64,7 @@ public class JugadorNave : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag(TAG_COLISIONABLE)) return;
+        if (!collision.CompareTag(TAG_ENEMIGO)) return;
 
         if (!EstaMuerto) Vidas--;
 
