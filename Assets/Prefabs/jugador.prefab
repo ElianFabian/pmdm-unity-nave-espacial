@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4225838219713556486}
   - component: {fileID: 1736430091}
   - component: {fileID: 2871812021801443204}
+  - component: {fileID: 7243232719725360402}
   m_Layer: 0
   m_Name: jugador
   m_TagString: Untagged
@@ -99,6 +100,8 @@ MonoBehaviour:
   bala: {fileID: 5922544505565926930, guid: c6cc0e4eb79b1c74f8b46ea9380c645b, type: 3}
   Velocidad: 5
   TasaDeDisparo: 5
+  Vidas: 5
+  EstaMuerto: 0
 --- !u!50 &2871812021801443204
 Rigidbody2D:
   serializedVersion: 4
@@ -120,3 +123,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!68 &7243232719725360402
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4225838219713556487}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 7.8021297, y: -7.1447134}
+  - {x: -7.785513, y: -7.108756}
+  - {x: -1.3026323, y: 7.2738633}
+  - {x: 1.4235687, y: 7.29957}
+  - {x: 7.7606754, y: -7.0601525}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

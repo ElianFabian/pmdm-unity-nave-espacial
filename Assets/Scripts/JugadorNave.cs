@@ -7,9 +7,9 @@ public class JugadorNave : MonoBehaviour
     [SerializeField] Bala2D bala;
     [SerializeField] float Velocidad = 2;
     [SerializeField][Range(1, 60)] byte TasaDeDisparo = 5;
-
+    
     public short Vidas = 5;
-    bool EstaMuerto = false;
+    public bool EstaMuerto = false;
     float SiguienteVezParaDisparar = 0;
 
     Rigidbody2D rbody;
@@ -64,7 +64,7 @@ public class JugadorNave : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag(TAG_ENEMIGO)) return;
+        if (!collision.CompareTag(TAG_ENEMIGO) || EstaMuerto) return;
 
         if (!EstaMuerto) Vidas--;
 
