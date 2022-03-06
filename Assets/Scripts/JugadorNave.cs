@@ -9,7 +9,7 @@ public class JugadorNave : MonoBehaviour
     [SerializeField] float Velocidad = 2;
     [SerializeField][Range(1, 60)] byte TasaDeDisparo = 5;
 
-    public short Vidas = 5;
+    public short Vida = 5;
     public bool EstaMuerto = false;
     float SiguienteVezParaDisparar = 0;
 
@@ -57,9 +57,9 @@ public class JugadorNave : MonoBehaviour
     {
         if (!collision.CompareTag(TAG_ENEMIGO) || EstaMuerto) return;
 
-        if (!EstaMuerto) Vidas--;
+        if (!EstaMuerto) Vida--;
 
-        if (Vidas <= 0) EstaMuerto = true;
+        if (Vida <= 0) EstaMuerto = true;
 
         if (EstaMuerto) Morir();
     }

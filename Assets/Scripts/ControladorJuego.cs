@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class ControladorJuego : MonoBehaviour
 {
-    [SerializeField] Text txtVidas;
     [SerializeField] Text txtPuntuacion;
     [SerializeField] JugadorNave Jugador;
     [SerializeField] AudioSource Musica;
@@ -23,7 +22,6 @@ public class ControladorJuego : MonoBehaviour
     void Update()
     {
         txtPuntuacion.text = $"Puntuación: {Puntuacion}";
-        txtVidas.text = $"Vidas: {Jugador.Vidas}";
 
         if (Input.GetKeyDown(KeyCode.R)) Reiniciar();
 
