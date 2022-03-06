@@ -7,7 +7,7 @@ public class JugadorNave : MonoBehaviour
     [SerializeField] Bala2D bala;
     [SerializeField] float Velocidad = 2;
     [SerializeField][Range(1, 60)] byte TasaDeDisparo = 5;
-    
+
     public short Vidas = 5;
     public bool EstaMuerto = false;
     float SiguienteVezParaDisparar = 0;
@@ -25,7 +25,7 @@ public class JugadorNave : MonoBehaviour
     void Start()
     {
         rbody.gravityScale = 0;
-        rbody.drag = 2.5f;
+        rbody.drag         = 2.5f;
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class JugadorNave : MonoBehaviour
 
         if (EstaMuerto) return;
 
-        MoverConTecladoFlechas();
+        Mover();
 
         LimitarPosicion();
 
@@ -68,15 +68,12 @@ public class JugadorNave : MonoBehaviour
 
         if (!EstaMuerto) Vidas--;
 
-        if (Vidas <= 0)
-        {
-            EstaMuerto = true;
-        }
+        if (Vidas <= 0) EstaMuerto = true;
 
         if (EstaMuerto) Morir();
     }
 
-    void MoverConTecladoFlechas(float velocidad = 5)
+    void Mover(float velocidad = 5)
     {
         var h = Input.GetAxisRaw("Horizontal");
         var v = Input.GetAxisRaw("Vertical");

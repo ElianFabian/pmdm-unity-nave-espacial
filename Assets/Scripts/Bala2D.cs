@@ -17,7 +17,7 @@ public class Bala2D : MonoBehaviour
 
     AudioSource Sonido;
 
-    const string TAG_ENEMIGO = "Enemigo";
+    const string TAG_ENEMIGO      = "Enemigo";
     const string TAG_COLISIONABLE = "Colisionable";
     #endregion
 
@@ -53,7 +53,7 @@ public class Bala2D : MonoBehaviour
     #region Métodos
     public void Disparar()
     {
-        transform.GetComponent<Rigidbody2D>().velocity = transform.up * Velocidad;
+        GetComponent<Rigidbody2D>().velocity = transform.up * Velocidad;
         Destroy(gameObject, TiempoDeVida);
     }
     #endregion

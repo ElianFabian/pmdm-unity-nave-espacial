@@ -36,7 +36,7 @@ public class Enemigo : MonoBehaviour
     }
     void Update()
     {
-        if(!EstaMuerto) Mover();
+        if (!EstaMuerto) Mover();
 
         if (transform.position.x < limiteIzquierdo || transform.position.y < limiteInferior)
         {
