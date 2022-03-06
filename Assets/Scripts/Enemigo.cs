@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemigo : MonoBehaviour
 {
+    #region Atributos
     [SerializeField] float Amplitud = 3;
 
     const string TAG_BALA_JUGADOR = "Bala Jugador";
@@ -17,12 +18,13 @@ public class Enemigo : MonoBehaviour
 
     const float limiteIzquierdo = -14;
     const float limiteInferior = -6;
+    #endregion
 
+    #region Métodos de Unity
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
     }
-
     private void Start()
     {
         rbody.gravityScale = 0;
@@ -50,7 +52,9 @@ public class Enemigo : MonoBehaviour
 
         if (!EstaMuerto) Morir();
     }
+    #endregion
 
+    #region Métodos
     void Mover()
     {
         transform.position = new Vector2
@@ -61,7 +65,6 @@ public class Enemigo : MonoBehaviour
             Amplitud * Mathf.Sin(Velocidad.y * Time.time + Desfase)
         );
     }
-
     void Morir()
     {
         rbody.gravityScale = 1;
@@ -70,4 +73,5 @@ public class Enemigo : MonoBehaviour
 
         ControladorJuego.Puntuacion++;
     }
+    #endregion
 }
