@@ -11,8 +11,9 @@ public class Enemigo : MonoBehaviour
     const string TAG_BALA_JUGADOR = "Bala Jugador";
 
     Rigidbody2D rbody;
-    Vector2 Velocidad;
+    Vector2 Velocidad = new Vector2(2, 1);
     float Desfase;
+    float AltruaInicial;
 
     bool EstaMuerto = false;
 
@@ -34,7 +35,9 @@ public class Enemigo : MonoBehaviour
         var x = Random.Range(1.0f, 3.0f);
         var y = Random.Range(1.0f, 3.0f);
 
-        Velocidad = new Vector2(x, y);
+        AltruaInicial = transform.position.y;
+
+        //Velocidad = new Vector2(x, y);
     }
     void Update()
     {
@@ -62,7 +65,7 @@ public class Enemigo : MonoBehaviour
             // Movimiento lineal
             transform.position.x - Velocidad.x * Time.deltaTime,
             // Movimiento senoidal
-            Amplitud * Mathf.Sin(Velocidad.y * Time.time + Desfase)
+            Amplitud * 0.5f * Mathf.Sin(Velocidad.y * transform.position.x) + AltruaInicial
         );
     }
     void Morir()
