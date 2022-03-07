@@ -6,6 +6,8 @@ public class BarraDeVida : MonoBehaviour
     #region Atributos
     [SerializeField] JugadorNave jugador;
     Image imgBarraDeVida;
+
+    float Velocidad = 10;
     #endregion
 
     #region Métodos de Unity
@@ -24,13 +26,11 @@ public class BarraDeVida : MonoBehaviour
     #region Métodos
     void Rellenar()
     {
-        var velocidad = 10 * Time.deltaTime;
-
         imgBarraDeVida.fillAmount = Mathf.Lerp
         (
             imgBarraDeVida.fillAmount,
             jugador.Vida / jugador.maxVida,
-            velocidad
+            Velocidad * Time.deltaTime
         );
     }
 
