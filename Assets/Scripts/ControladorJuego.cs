@@ -20,6 +20,8 @@ public class ControladorJuego : MonoBehaviour
     {
         escenaActual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         Musica = GameObject.Find("MUSICA").GetComponent<AudioSource>();
+
+        txtPuntuacion = GameObject.Find(nameof(txtPuntuacion)).GetComponent<Text>();
     }
 
     void Update()
