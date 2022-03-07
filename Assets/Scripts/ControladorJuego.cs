@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ControladorJuego : MonoBehaviour
 {
     #region Atributos
-    [SerializeField] Text txtPuntuacion;
+    [SerializeField] Text        txtPuntuacion;
     [SerializeField] JugadorNave Jugador;
     [SerializeField] AudioSource Musica;
     [SerializeField] AudioSource GameOverSound;
