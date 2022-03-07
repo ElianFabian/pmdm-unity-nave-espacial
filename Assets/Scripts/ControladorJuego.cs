@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class ControladorJuego : MonoBehaviour
 {
+    #region Atributos
     [SerializeField] Text txtPuntuacion;
     [SerializeField] JugadorNave Jugador;
     [SerializeField] AudioSource Musica;
@@ -12,8 +13,10 @@ public class ControladorJuego : MonoBehaviour
 
     public static uint Puntuacion = 0;
     bool JugadorSeHaMuerto = false;
+    #endregion
 
-    private void Awake()
+    #region Métodos de Unity
+    void Awake()
     {
         escenaActual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         Musica = GameObject.Find("MUSICA").GetComponent<AudioSource>();
@@ -33,7 +36,9 @@ public class ControladorJuego : MonoBehaviour
             JugadorSeHaMuerto = true;
         }
     }
+    #endregion
 
+    #region Métodos
     public void Reiniciar()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(escenaActual);
@@ -42,4 +47,5 @@ public class ControladorJuego : MonoBehaviour
         // ya que de forma normal la música continúa independientemente de reiniciarse
         if (Jugador.EstaMuerto) Musica.Play();
     }
+    #endregion
 }
