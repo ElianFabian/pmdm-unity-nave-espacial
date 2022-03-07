@@ -3,21 +3,45 @@ using UnityEngine.UI;
 
 public class BarraDeVida : MonoBehaviour
 {
+    #region Atributos
     [SerializeField] JugadorNave jugador;
     Image imgBarraDeVida;
+    #endregion
 
-    float vidaInicial;
-
+    #region Métodos de Unity
     private void Awake()
     {
         imgBarraDeVida = GetComponent<Image>();
-
-        vidaInicial = jugador.Vida;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        imgBarraDeVida.fillAmount = jugador.Vida / vidaInicial;
+        Rellenar();
+        CambiarColor();
     }
+    #endregion
+
+    #region Métodos
+    void Rellenar()
+    {
+        var velocidad = 10 * Time.deltaTime;
+
+        imgBarraDeVida.fillAmount = Mathf.Lerp
+        (
+            imgBarraDeVida.fillAmount,
+            jugador.Vida / jugador.maxVida,
+            velocidad
+        );
+    }
+
+    void CambiarColor()
+    {
+        imgBarraDeVida.color = Color.Lerp
+        (
+            Color.red,
+            Color.green,
+            imgBarraDeVida.fillAmount
+        );
+    }
+    #endregion
 }

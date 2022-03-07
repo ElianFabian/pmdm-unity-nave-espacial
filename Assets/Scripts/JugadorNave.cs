@@ -7,9 +7,10 @@ public class JugadorNave : MonoBehaviour
     #region Aributos
     [SerializeField] Bala2D bala;
     [SerializeField] float Velocidad = 2;
-    [SerializeField][Range(1, 60)] byte TasaDeDisparo = 5;
+    [SerializeField][Range(1, 60)] byte TasaDeDisparo = 8;
 
-    public short Vida = 5;
+    public float Vida = 10;
+    public readonly float maxVida = 10;
     public bool EstaMuerto = false;
     float SiguienteVezParaDisparar = 0;
 
