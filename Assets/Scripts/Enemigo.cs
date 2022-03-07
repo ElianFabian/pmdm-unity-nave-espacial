@@ -19,7 +19,7 @@ public class Enemigo : MonoBehaviour
     bool EstaMuerto = false;
 
     const float limiteIzquierdo = -14;
-    const float limiteInferior = -6;
+    const float limiteInferior  = -6;
 
     public System.Action OnMorir;
     #endregion
