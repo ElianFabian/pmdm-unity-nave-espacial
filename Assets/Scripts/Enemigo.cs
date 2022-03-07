@@ -72,7 +72,6 @@ public class Enemigo : MonoBehaviour
         EstaMuerto = true;
 
         OnMorir?.Invoke();
-        //ControladorJuego.Puntuacion++;
     }
     #endregion
 }
