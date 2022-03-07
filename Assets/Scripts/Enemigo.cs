@@ -11,6 +11,8 @@ public class Enemigo : MonoBehaviour
     const string TAG_BALA_JUGADOR = "Bala Jugador";
 
     Rigidbody2D rbody;
+    SpriteRenderer spriteRenderer;
+
     Vector2 Velocidad = new Vector2(2, 1);
     float AltruaInicial;
 
@@ -25,7 +27,8 @@ public class Enemigo : MonoBehaviour
     #region Métodos de Unity
     private void Awake()
     {
-        rbody = GetComponent<Rigidbody2D>();
+        rbody          = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
@@ -41,7 +44,6 @@ public class Enemigo : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -64,6 +66,7 @@ public class Enemigo : MonoBehaviour
     }
     void Morir()
     {
+        spriteRenderer.color = new Color(0.1f, 0.1f, 0.1f);
         rbody.gravityScale = 1;
 
         EstaMuerto = true;
