@@ -46,6 +46,8 @@ public class ControladorJuego : MonoBehaviour
         // Al reiniciar sólo se reproducirá la música de nuevo si el jugador está muerto
         // ya que de forma normal la música continúa independientemente de reiniciarse
         if (Jugador.EstaMuerto) Musica.Play();
+
+        Puntuacion = 0;
     }
     #endregion
 }
