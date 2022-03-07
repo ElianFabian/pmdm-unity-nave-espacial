@@ -21,8 +21,9 @@ public class EmisorDeEnemigos : MonoBehaviour
         var i = 0;
         while (true)
         {
-            Instantiate(enemigo, transform.position, enemigo.transform.rotation);
-            
+            var nuevoEnemigo = Instantiate(enemigo, transform.position, enemigo.transform.rotation);
+            nuevoEnemigo.OnMorir += () => ControladorJuego.Puntuacion++;
+
             i++;
 
             yield return new WaitForSeconds(0.5f);

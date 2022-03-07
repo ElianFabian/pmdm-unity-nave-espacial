@@ -12,13 +12,14 @@ public class Enemigo : MonoBehaviour
 
     Rigidbody2D rbody;
     Vector2 Velocidad = new Vector2(2, 1);
-    float Desfase;
     float AltruaInicial;
 
     bool EstaMuerto = false;
 
     const float limiteIzquierdo = -14;
     const float limiteInferior = -6;
+
+    public System.Action OnMorir;
     #endregion
 
     #region Métodos de Unity
@@ -30,14 +31,7 @@ public class Enemigo : MonoBehaviour
     {
         rbody.gravityScale = 0;
 
-        Desfase = Random.Range(0.0f, 2 * Mathf.PI);
-
-        var x = Random.Range(1.0f, 3.0f);
-        var y = Random.Range(1.0f, 3.0f);
-
         AltruaInicial = transform.position.y;
-
-        //Velocidad = new Vector2(x, y);
     }
     void Update()
     {
@@ -74,7 +68,8 @@ public class Enemigo : MonoBehaviour
 
         EstaMuerto = true;
 
-        ControladorJuego.Puntuacion++;
+        OnMorir?.Invoke();
+        //ControladorJuego.Puntuacion++;
     }
     #endregion
 }
