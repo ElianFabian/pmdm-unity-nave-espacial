@@ -3,100 +3,105 @@ using UnityEngine;
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Rigidbody2D))]
 public class JugadorNave : MonoBehaviour
-{
-    #region Aributos
+
+#region Aributos
     [SerializeField] Bala2D bala;
     [SerializeField] float Velocidad = 2;
-    [SerializeField][Range(1, 60)] byte TasaDeDisparo = 8;
+[SerializeField][Range(1, 60)] byte TasaDeDisparo = 8;
 
-    public float Vida = 10;
-    public readonly float maxVida = 10;
-    public bool EstaMuerto = false;
-    float SiguienteVezParaDisparar = 0;
+public float Vida = 10;
+public readonly float maxVida = 10;
+public bool EstaMuerto = false;
+float SiguienteVezParaDisparar = 0;
 
-    Rigidbody2D rbody;
+Rigidbody2D rbody;
 
-    const float limiteInferior = -6;
-    const string TAG_ENEMIGO = "Enemigo";
-    #endregion
+const float limiteInferior = -6;
+const string TAG_ENEMIGO = "Enemigo";
+#endregion
 
-    #region Métodos de Unity
-    private void Awake()
+#region Métodos de Unity
+private void Awake()
+{
+    rbody = GetComponent<Rigidbody2D>();
+}
+void Start()
+{
+    rbody.gravityScale = 0;
+    rbody.drag         = 2.5f;
+}
+void Update()
+{
+    // Cuando el jugador muera se caerá y cuando sobre pase el límite inferior se destruirá
+    if (transform.position.y < limiteInferior) Destroy(gameObject);
+
+    if (EstaMuerto) return;
+
+    LimitarPosicion();
+
+    // Disparo normal
+    if (Input.GetKeyDown(KeyCode.Mouse0))
     {
-        rbody = GetComponent<Rigidbody2D>();
+        Disparar();
     }
-    void Start()
+    // Dispar en ráfaga
+    if (Input.GetKey(KeyCode.Mouse2) && Time.time >= SiguienteVezParaDisparar)
     {
-        rbody.gravityScale = 0;
-        rbody.drag         = 2.5f;
+        SiguienteVezParaDisparar = Time.time + 1/(float)TasaDeDisparo;
+        Disparar();
     }
-    void Update()
-    {
-        // Cuando el jugador muera se caerá y cuando sobre pase el límite inferior se destruirá
-        if (transform.position.y < limiteInferior) Destroy(gameObject);
+}
 
-        if (EstaMuerto) return;
+private void FixedUpdate()
+{
+    if (EstaMuerto) return;
 
-        Mover();
+    Mover();
+}
 
-        LimitarPosicion();
+private void OnTriggerEnter2D(Collider2D collision)
+{
+    if (!collision.CompareTag(TAG_ENEMIGO) || EstaMuerto) return;
 
-        // Disparo normal
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Disparar();
-        }
-        // Dispar en ráfaga
-        if (Input.GetKey(KeyCode.Mouse2) && Time.time >= SiguienteVezParaDisparar)
-        {
-            SiguienteVezParaDisparar = Time.time + 1/(float)TasaDeDisparo;
-            Disparar();
-        }
-    }
+    if (!EstaMuerto) Vida--;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.CompareTag(TAG_ENEMIGO) || EstaMuerto) return;
+    if (Vida <= 0) EstaMuerto = true;
 
-        if (!EstaMuerto) Vida--;
+    if (EstaMuerto) Morir();
+}
+#endregion
 
-        if (Vida <= 0) EstaMuerto = true;
+#region Métodos
+private void LimitarPosicion()
+{
+    transform.position = new Vector3
+    (
+        Mathf.Clamp(transform.position.x, -7.8f, 6.5f),
+        Mathf.Clamp(transform.position.y, -3.8f, 3.8f),
+        transform.position.z
+    );
+}
+void Mover(float velocidad = 5)
+{
+    var h = Input.GetAxisRaw("Horizontal");
+    var v = Input.GetAxisRaw("Vertical");
 
-        if (EstaMuerto) Morir();
-    }
-    #endregion
+    var direccion = new Vector3(h, v, 0);
+    direccion = direccion.normalized;
 
-    #region Métodos
-    private void LimitarPosicion()
-    {
-        transform.position = new Vector3
-        (
-            Mathf.Clamp(transform.position.x, -7.8f, 6.5f),
-            Mathf.Clamp(transform.position.y, -3.8f, 3.8f),
-            transform.position.z
-        );
-    }
-    void Mover(float velocidad = 5)
-    {
-        var h = Input.GetAxisRaw("Horizontal");
-        var v = Input.GetAxisRaw("Vertical");
+    rbody.AddForce(direccion * Velocidad);
+}
+void Disparar()
+{
+    var nuevaBala = Instantiate(bala, transform.position + transform.forward, bala.transform.rotation);
 
-        var direccion = new Vector3(h, v, 0);
-        direccion = direccion.normalized;
+    nuevaBala.Disparar();
+}
+void Morir()
+{
+    rbody.gravityScale = 1;
 
-        rbody.AddForce(direccion * Velocidad);
-    }
-    void Disparar()
-    {
-        var nuevaBala = Instantiate(bala, transform.position + transform.forward, bala.transform.rotation);
-
-        nuevaBala.Disparar();
-    }
-    void Morir()
-    {
-        rbody.gravityScale = 1;
-
-        EstaMuerto = true;
-    }
+    EstaMuerto = true;
+}
     #endregion
 }
