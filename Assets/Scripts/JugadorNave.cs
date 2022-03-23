@@ -37,8 +37,6 @@ public class JugadorNave : MonoBehaviour
 
         if (EstaMuerto) return;
 
-        Mover();
-
         LimitarPosicion();
 
         // Disparo normal
@@ -52,6 +50,13 @@ public class JugadorNave : MonoBehaviour
             SiguienteVezParaDisparar = Time.time + 1/(float)TasaDeDisparo;
             Disparar();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (EstaMuerto) return;
+
+        Mover();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
